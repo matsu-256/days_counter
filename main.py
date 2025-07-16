@@ -1,8 +1,7 @@
 import tkinter as tk
-
 def uru(year):
     return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
-
+#　メインの処理
 def foo():
     ans = 0
     months = [31,28,31,30,31,30,31,31,30,31,30,31]
@@ -24,7 +23,7 @@ def foo():
         
         # 日付のエラー判定 　具体的には、日付が負の値、日にちの値がその月の日数を超過している、FROM > TOの時
         if ( year1 < 0 or month1 < 0 or day1 < 0 or year2 < 0 or month2 < 0 or day2 < 0 ) or \
-        ( (uru(year1) and month1 == 2 and uru(year2) and month2 == 2) and (months[month2 - 1] + 1 < day1 or months[month2 - 1] + 1 < day2) ) or \
+        ( (uru(year2) and month2 == 2) and (months[month1 - 1] < day1 or months[month2 - 1] + 1 < day2) ) or \
         ( ( uru(year1) and month1 == 2 ) and (months[month1 - 1] + 1 < day1 or months[month2 - 1] < day2) ) or \
         ( ( (not uru(year1)) and (not uru(year2)) ) and (months[month1 - 1] < day1 or months[month2 - 1] < day2)  ) or \
         ( ((year2 - year1) < 0) or ( year1 == year2 and month1 > month2 ) or ( year1 == year2 and month1 == month2 and day1 > day2)):
@@ -102,8 +101,8 @@ year2_L = tk.Label(root, text="年 :")
 year2_L.grid(row=4, column=0, sticky="w")
 year2_E = tk.Entry(root, width=7)
 year2_E.grid(row=4, column=1, sticky="ew")
-month2__L = tk.Label(root, text=" 月 :")
-month2__L.grid(row=4, column=2, sticky="ew")
+month2_L = tk.Label(root, text=" 月 :")
+month2_L.grid(row=4, column=2, sticky="ew")
 month2_E = tk.Entry(root, width=3)
 month2_E.grid(row=4, column=3, sticky="ew")
 day2_L = tk.Label(root, text=" 日 :")
